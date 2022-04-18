@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/tests.yml"
+      - "src/**"
+      - "test/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "tsconfig.node.json"
+      - "vite.config.ts"
+
+jobs:
+  vitest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js v16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Set up node_modules cache
+        uses: actions/cache@v2
+        id: node-modules-cache
+        with:
+          key: node-modules-cache-${{ hashFiles('**/package-lock.json') }}
+          path: '**/node_modules'
+
+      - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Test with Vitest
+        run: npm run test:vitest

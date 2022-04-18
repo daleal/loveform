@@ -1,0 +1,57 @@
+{
+  "name": "@daleal/latter",
+  "version": "0.0.1",
+  "author": {
+    "name": "Daniel Leal",
+    "email": "dlleal@uc.cl"
+  },
+  "license": "MIT",
+  "main": "dist/main.umd.js",
+  "module": "dist/main.es.js",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/main.umd.js",
+      "import": "./dist/main.es.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "run-p build:*",
+    "build:scripts": "vite build",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint --ext .js,.ts,.vue .",
+    "test": "run-p test:*",
+    "test:vitest": "vitest run --coverage",
+    "watch:build": "run-p watch:build:*",
+    "watch:build:scripts": "vite build --watch",
+    "watch:build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly --watch",
+    "version:get": "node -p \"require('./package.json').version\""
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "@vue/test-utils": "^2.0.0-rc.17",
+    "c8": "^7.11.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-vue": "^8.4.1",
+    "jsdom": "^19.0.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vitest": "^0.5.9",
+    "vue": "^3.2.33",
+    "vue-tsc": "^0.29.8"
+  },
+  "files": [
+    "dist"
+  ]
+}

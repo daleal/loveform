@@ -1,0 +1,7 @@
+# Auto-generated stuff
+coverage
+dist
+node_modules
+
+# Playground
+/dev/src/GPlayground.vue
