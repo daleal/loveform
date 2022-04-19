@@ -34,6 +34,7 @@ module.exports = {
     },
   },
   rules: {
+    'prefer-destructuring': ['error', { VariableDeclarator: { array: true } }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 'off',
     'no-spaced-func': 'off',

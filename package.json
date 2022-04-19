@@ -21,7 +21,7 @@
     "build:scripts": "vite build",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "lint": "run-p lint:*",
-    "lint:eslint": "eslint --ext .js,.ts,.vue .",
+    "lint:eslint": "eslint --ext .js,.ts,.tsx,.vue .",
     "test": "run-p test:*",
     "test:vitest": "vitest run --coverage",
     "watch:build": "run-p watch:build:*",

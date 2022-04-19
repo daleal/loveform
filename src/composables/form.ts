@@ -5,18 +5,20 @@ import {
 // Types
 import type { ComputedRef, InjectionKey, Ref } from 'vue';
 
+type IdType = number;
+
 interface FormField {
-  id: number | string
+  id: IdType
   valid: Ref<boolean>
 }
 
 export interface FormProvide {
   register: (
-    id: number | string,
+    id: IdType,
     valid: ComputedRef<boolean>,
   ) => void,
   unregister: (
-    id: number | string,
+    id: IdType,
   ) => void,
   valid: ComputedRef<boolean>,
 }
@@ -34,17 +36,19 @@ export const createForm = () => {
   });
 
   provide(FormKey, {
-    register: (id: string | number, valid: ComputedRef) => {
+    register: (id: IdType, valid: ComputedRef) => {
       items.value.push({
         id,
         valid,
       });
     },
-    unregister: (id: string | number) => {
+    unregister: (id: IdType) => {
       items.value = items.value.filter((item) => item.id !== id);
     },
     valid: computedValid,
   });
+
+  return { valid: computedValid };
 };
 
 export const useForm = () => inject(FormKey, null);
