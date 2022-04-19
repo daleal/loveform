@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "latter": "file:..",
+    "@daleal/latter": "file:..",
     "vue": "^3.2.33"
   },
   "devDependencies": {

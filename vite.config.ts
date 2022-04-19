@@ -3,15 +3,27 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vueJsx({ optimize: false, enableObjectSlots: true }),
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, 'src', 'main.ts'),
       name: 'latter',
       fileName: (format) => `main.${format}.js`,
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue',
+        },
+      },
     },
     sourcemap: true,
   },

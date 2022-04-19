@@ -9,7 +9,7 @@ export const LForm = defineComponent({
 
     useRender(() => (
       <form>
-        { slots.default }
+        { slots.default?.() }
       </form>
     ));
 
@@ -17,4 +17,4 @@ export const LForm = defineComponent({
   },
 });
 
-export type LForm = InstanceType<typeof LForm>
+export type LForm = InstanceType<typeof LForm>;

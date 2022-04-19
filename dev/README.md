@@ -9,5 +9,5 @@ Inside the `src` sub-folder you will find a `GPlayground.template.vue` file. Cop
 To import a component from the library, first build the library and then just import it:
 
 ```ts
-import { GButton } from 'latter';
+import { LForm } from '@daleal/latter';
 ```

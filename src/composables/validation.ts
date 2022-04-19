@@ -78,4 +78,6 @@ export const useValidation = (props: ValidationProps) => {
   provide(FieldKey, {
     valid: externalValid,
   });
+
+  return { valid: externalValid };
 };
