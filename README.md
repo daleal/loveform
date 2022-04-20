@@ -22,6 +22,50 @@ npm install @daleal/latter
 yarn add @daleal/latter
 ```
 
+## Quick Example
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue';
+import { LForm, LInput } from '@daleal/latter';
+
+const formRef = ref<LForm | null>(null);
+
+const email = ref('');
+const description = ref('');
+
+const emailValidations = [
+  (value: string) => !!value.trim() || 'This field cannot be empty',
+  (value: string) => value.includes('@') || 'Invalid email',
+];
+
+const descriptionValidations = [
+  (value: string) => !!value.trim() || 'The description cannot be empty',
+];
+
+const submit = () => {
+  if (formRef.value?.valid) {
+    // do something to submit the form
+    // when every input is valid
+  }
+};
+</script>
+
+<template>
+  <LForm ref="formRef">
+    <LInput
+      v-model="email"
+      :validations="emailValidations"
+    />
+    <LInput
+      v-model="description"
+      :validations="descriptionValidations"
+    />
+  </LForm>
+  <button @click="submit">Submit</button>
+</template>
+```
+
 ## Usage
 
 **Latter** exports the following components to create forms:
