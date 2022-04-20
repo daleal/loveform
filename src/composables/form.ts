@@ -28,7 +28,7 @@ export const FormKey: InjectionKey<FormProvide> = Symbol.for('latter:form');
 export const createForm = () => {
   const items = shallowRef<Array<FormField>>([]);
 
-  const computedValid = computed(() => {
+  const publicValid = computed(() => {
     const areItemsValid: Array<boolean> = items.value.map(
       (item: FormField) => item.valid.value,
     );
@@ -45,10 +45,10 @@ export const createForm = () => {
     unregister: (id: IdType) => {
       items.value = items.value.filter((item) => item.id !== id);
     },
-    valid: computedValid,
+    valid: publicValid,
   });
 
-  return { valid: computedValid };
+  return { valid: publicValid };
 };
 
 export const useForm = () => inject(FormKey, null);

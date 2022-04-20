@@ -7,6 +7,8 @@ import { getUniqueId, propsFactory } from '@/utils';
 // Types
 import type { InjectionKey, PropType } from 'vue';
 
+export const UPDATE_MODEL_VALUE = 'update:modelValue';
+
 export interface FieldProvide {
   valid: ComputedRef<boolean>,
 }
@@ -31,6 +33,11 @@ export const makeValidationProps = propsFactory({
   },
 });
 
+export const makeValidationEmits = () => ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  [UPDATE_MODEL_VALUE]: (value: string) => true,
+});
+
 export const useValidation = (props: ValidationProps) => {
   const form = useForm();
   const uid = getUniqueId();
@@ -38,7 +45,7 @@ export const useValidation = (props: ValidationProps) => {
 
   const validating = ref(false);
   const error = ref('');
-  const internalValid = computed(() => !error.value.trim());
+  const privateValid = computed(() => !error.value.trim());
 
   const startValidating = () => {
     validating.value = true;
@@ -57,16 +64,16 @@ export const useValidation = (props: ValidationProps) => {
     }
   };
 
-  const externalValid = computed(() => {
+  const publicValid = computed(() => {
     if (!validating.value) {
       startValidating();
       validate();
     }
-    return internalValid.value;
+    return privateValid.value;
   });
 
   onBeforeMount(() => {
-    form?.register(uid, externalValid);
+    form?.register(uid, publicValid);
   });
 
   onBeforeUnmount(() => {
@@ -76,8 +83,13 @@ export const useValidation = (props: ValidationProps) => {
   watch([() => props.modelValue, () => props.validations, validating], validate);
 
   provide(FieldKey, {
-    valid: externalValid,
+    valid: publicValid,
   });
 
-  return { valid: externalValid };
+  return {
+    startValidating,
+    valid: publicValid,
+    privateValid,
+    error,
+  };
 };
