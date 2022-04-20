@@ -1,19 +1,17 @@
 import {
-  computed, ComputedRef, onBeforeMount, onBeforeUnmount, provide, ref, watch,
+  computed, ComputedRef, onBeforeMount, onBeforeUnmount, ref, watch,
 } from 'vue';
 import { useForm } from '@/composables/form';
 import { getUniqueId, propsFactory } from '@/utils';
 
 // Types
-import type { InjectionKey, PropType } from 'vue';
+import type { PropType } from 'vue';
 
 export const UPDATE_MODEL_VALUE = 'update:modelValue';
 
 export interface FieldProvide {
   valid: ComputedRef<boolean>,
 }
-
-export const getFieldKey = (id: number) => <InjectionKey<FieldProvide>>Symbol.for(`latter:field-${id}`);
 
 export type Validation = (value: string) => true | string;
 
@@ -41,7 +39,6 @@ export const makeValidationEmits = () => ({
 export const useValidation = (props: ValidationProps) => {
   const form = useForm();
   const uid = getUniqueId();
-  const FieldKey = getFieldKey(uid);
 
   const validating = ref(false);
   const error = ref('');
@@ -81,10 +78,6 @@ export const useValidation = (props: ValidationProps) => {
   });
 
   watch([() => props.modelValue, () => props.validations, validating], validate);
-
-  provide(FieldKey, {
-    valid: publicValid,
-  });
 
   return {
     startValidating,
