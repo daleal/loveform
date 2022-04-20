@@ -87,6 +87,8 @@ Notice how we declared the `ref` type as `LInput | null`. You can use the `LInpu
 
 When calling `inputRef.value?.valid`, you will receive a boolean representing whether the validations set for the input passed or not. Please note that the validations are **watched**, which means that they will run when **something changes** (either the validations themselves or the input value), and not when calling `validate`. This means that you can safely call the `.valid` attribute multiple times in the same method without re-running the validations all over again.
 
+There is also an `error` attribute on each input that can be used to display the error of said input when the validation fails.
+
 ### `LForm`
 
 To use the `LForm` component, render `LInput` components inside of it:
