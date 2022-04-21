@@ -52,6 +52,9 @@
     "vue": "^3.2.33",
     "vue-tsc": "^0.29.8"
   },
+  "overrides": {
+    "minimist": ">=1.2.6"
+  },
   "files": [
     "dist"
   ]
