@@ -4,11 +4,22 @@ import { createForm } from '@/composables/form';
 
 export const LForm = defineComponent({
   name: 'LForm',
-  setup(_, { slots }) {
+  emits: {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    submit: (event: Event) => true,
+  },
+  setup(_, { emit, slots }) {
     const form = createForm();
 
+    const onSubmit = (event: Event) => {
+      event.preventDefault();
+      if (form.valid.value) {
+        emit('submit', event);
+      }
+    };
+
     useRender(() => (
-      <form>
+      <form onSubmit={onSubmit}>
         { slots.default?.() }
       </form>
     ));

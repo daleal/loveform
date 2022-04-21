@@ -2,7 +2,7 @@ import {
   computed, ComputedRef, onBeforeMount, onBeforeUnmount, ref, watch,
 } from 'vue';
 import { useForm } from '@/composables/form';
-import { getUniqueId, propsFactory } from '@/utils';
+import { getUniqueId } from '@/utils/uniqueId';
 
 // Types
 import type { PropType } from 'vue';
@@ -13,30 +13,30 @@ export interface FieldProvide {
   valid: ComputedRef<boolean>,
 }
 
-export type Validation = (value: string) => true | string;
+export type Validation<T> = (value: T) => true | string;
 
-export interface ValidationProps {
-  modelValue: string,
-  validations: Array<Validation>,
+export interface ValidationProps<T> {
+  modelValue: T,
+  validations: Array<Validation<T>>,
 }
 
-export const makeValidationProps = propsFactory({
+export const makeValidationProps = <T>() => ({
   modelValue: {
-    type: String,
-    required: true,
+    type: null as unknown as PropType<T>,
+    required: true as const,
   },
   validations: {
-    type: Array as PropType<Array<Validation>>,
+    type: Array as PropType<Array<Validation<T>>>,
     default: () => ([]),
   },
 });
 
-export const makeValidationEmits = () => ({
+export const makeValidationEmits = <T>() => ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  [UPDATE_MODEL_VALUE]: (value: string) => true,
+  [UPDATE_MODEL_VALUE]: (value: T) => true,
 });
 
-export const useValidation = (props: ValidationProps) => {
+export const useValidation = <T>(props: ValidationProps<T>) => {
   const form = useForm();
   const uid = getUniqueId();
 

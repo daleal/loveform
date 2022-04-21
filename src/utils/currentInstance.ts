@@ -1,12 +1,11 @@
-// Utilities
-import { getCurrentInstance as _getCurrentInstance } from 'vue';
+import { getCurrentInstance as vueGetCurrentInstance } from 'vue';
 
-export function getCurrentInstance(name: string, message?: string) {
-  const vm = _getCurrentInstance();
+export const getCurrentInstance = (name: string, message?: string) => {
+  const vm = vueGetCurrentInstance();
 
   if (!vm) {
     throw new Error(`[Latter] ${name} ${message || 'must be called from inside a setup function'}`);
   }
 
   return vm;
-}
+};

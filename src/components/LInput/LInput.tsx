@@ -10,25 +10,32 @@ import { useRender } from '@/utils/render';
 export const LInput = defineComponent({
   name: 'LInput',
   props: {
-    ...makeValidationProps(),
+    hideErrors: {
+      type: Boolean,
+      default: () => false,
+    },
+    ...makeValidationProps<string>(),
   },
   emits: {
-    ...makeValidationEmits(),
+    ...makeValidationEmits<string>(),
   },
   setup(props, { attrs, emit }) {
-    const validation = useValidation(props);
+    const validation = useValidation<string>(props);
 
     const onInput = (event: Event) => {
       emit(UPDATE_MODEL_VALUE, (event.target as HTMLInputElement).value);
     };
 
     useRender(() => (
-      <input
-        value={props.modelValue}
-        onInput={onInput}
-        onBlur={validation.startValidating}
-        { ...{ attrs } }
-      />
+      <>
+        <input
+          value={props.modelValue}
+          onInput={onInput}
+          onBlur={validation.startValidating}
+          { ...{ attrs } }
+        />
+        { !props.hideErrors && <p>{ validation.error.value }</p> }
+      </>
     ));
 
     return {
