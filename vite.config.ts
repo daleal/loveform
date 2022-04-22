@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src', 'main.ts'),
-      name: 'latter',
+      name: 'loveform',
       fileName: (format) => `main.${format}.js`,
     },
     rollupOptions: {

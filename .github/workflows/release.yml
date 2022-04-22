@@ -30,10 +30,10 @@ jobs:
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build Latter
+      - name: Build Loveform
         run: npm run build
 
-      - name: Publish Latter
+      - name: Publish Loveform
         run: npm publish
 
   github-release:

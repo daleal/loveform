@@ -1,4 +1,4 @@
-<h1 align="center">Latter</h1>
+<h1 align="center">Loveform</h1>
 
 <p align="center">
     <em>
@@ -6,9 +6,9 @@
     </em>
 </p>
 
-Between a _framework_ and a _tool_... not the former, but **the Latter**.
+Between a _framework_ and a _tool_... not the former, but **the Loveform**.
 
-**Latter** is a tool for writing and validating forms when using Vue 3. Unstyled, **Latter** will only take care of what needs to take care of, and not what it doesn't.
+**Loveform** is a tool for writing and validating forms when using Vue 3. Unstyled, **Loveform** will only take care of what needs to take care of, and not what it doesn't.
 
 ## Installation
 
@@ -16,10 +16,10 @@ Install using npm! (or your favourite package manager)
 
 ```sh
 # Using npm
-npm install @daleal/latter
+npm install loveform
 
 # Using yarn
-yarn add @daleal/latter
+yarn add loveform
 ```
 
 ## Quick Example
@@ -27,7 +27,7 @@ yarn add @daleal/latter
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LForm, LInput } from '@daleal/latter';
+import { LForm, LInput } from 'loveform';
 
 const formRef = ref<LForm | null>(null);
 
@@ -68,7 +68,7 @@ const submit = () => {
 
 ## Usage
 
-**Latter** exports the following components to create forms:
+**Loveform** exports the following components to create forms:
 
 - `LInput`
 - `LForm`
@@ -80,7 +80,7 @@ To use the `LInput` component, pass use a `v-model` on it to some reactive value
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LInput } from '@daleal/latter';
+import { LInput } from 'loveform';
 
 const inputValue = ref('');
 </script>
@@ -99,7 +99,7 @@ Each `LInput` also contains a `valid` exposed attribute, which corresponds to th
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LInput } from '@daleal/latter';
+import { LInput } from 'loveform';
 
 const inputRef = ref<LInput | null>(null);
 
@@ -140,7 +140,7 @@ To use the `LForm` component, render `LInput` components inside of it:
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LForm, LInput } from '@daleal/latter';
+import { LForm, LInput } from 'loveform';
 
 const email = ref('');
 const descriptionValue = ref('');
@@ -159,7 +159,7 @@ The `LForm` component also contains a `valid` exposed attribute, which correspon
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { LForm, LInput } from '@daleal/latter';
+import { LForm, LInput } from 'loveform';
 
 const formRef = ref<LForm | null>(null);
 
