@@ -6,6 +6,16 @@
   </em>
 </p>
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/loveform" target="_blank">
+    <img src="https://img.shields.io/npm/v/loveform?label=version&logo=nodedotjs&logoColor=%23fff&color=fc0380" alt="NPM - Version">
+  </a>
+
+  <a href="https://github.com/daleal/loveform/actions?query=workflow%3Alinters" target="_blank">
+    <img src="https://img.shields.io/github/workflow/status/daleal/loveform/linters?label=linters&logo=github" alt="Linters">
+  </a>
+</p>
+
 **Loveform** is a tool for writing and validating forms when using [**Vue 3**](https://vuejs.org). Unstyled, **Loveform** will only take care of what needs to take care of, and not what it doesn't.
 
 ## Installation
