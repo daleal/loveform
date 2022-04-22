@@ -23,7 +23,7 @@ export interface FormProvide {
   valid: ComputedRef<boolean>,
 }
 
-export const FormKey: InjectionKey<FormProvide> = Symbol.for('latter:form');
+export const FormKey: InjectionKey<FormProvide> = Symbol.for('loveform:form');
 
 export const createForm = () => {
   const items = shallowRef<Array<FormField>>([]);
