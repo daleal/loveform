@@ -1,11 +1,13 @@
 {
   "name": "loveform",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "description": "The form assembly tool that won't break your heart 💔",
+  "repository": "https://github.com/daleal/loveform",
+  "license": "MIT",
   "author": {
     "name": "Daniel Leal",
     "email": "dlleal@uc.cl"
   },
-  "license": "MIT",
   "main": "dist/main.umd.js",
   "module": "dist/main.es.js",
   "types": "dist/main.d.ts",
@@ -28,6 +30,9 @@
     "watch:build:scripts": "vite build --watch",
     "watch:build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly --watch",
     "version:get": "node -p \"require('./package.json').version\""
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",

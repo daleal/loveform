@@ -1,14 +1,12 @@
 <h1 align="center">Loveform</h1>
 
 <p align="center">
-    <em>
-        The <strong>form assembling tool</strong> for people with more important things to do.
-    </em>
+  <em>
+    The form assembly tool that <strong>won't break your heart</strong> 💔.
+  </em>
 </p>
 
-Between a _framework_ and a _tool_... not the former, but **the Loveform**.
-
-**Loveform** is a tool for writing and validating forms when using Vue 3. Unstyled, **Loveform** will only take care of what needs to take care of, and not what it doesn't.
+**Loveform** is a tool for writing and validating forms when using [**Vue 3**](https://vuejs.org). Unstyled, **Loveform** will only take care of what needs to take care of, and not what it doesn't.
 
 ## Installation
 
