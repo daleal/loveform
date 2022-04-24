@@ -3,13 +3,23 @@ import {
 } from 'vue';
 
 // Types
-import type { ComputedRef, InjectionKey, Ref } from 'vue';
+import type {
+  ComputedRef, InjectionKey, PropType, Ref,
+} from 'vue';
+
+export const SUBMIT = 'submit';
+export const SUBMIT_PROP = 'onSubmit';
 
 type IdType = number;
 
 interface FormField {
-  id: IdType
-  valid: Ref<boolean>
+  id: IdType,
+  valid: Ref<boolean>,
+}
+
+export interface FormProps {
+  onSubmit?: (event: Event) => void,
+  hideErrors: boolean,
 }
 
 export interface FormProvide {
@@ -20,12 +30,28 @@ export interface FormProvide {
   unregister: (
     id: IdType,
   ) => void,
+  hideErrors: boolean,
   valid: ComputedRef<boolean>,
 }
 
 export const FormKey: InjectionKey<FormProvide> = Symbol.for('loveform:form');
 
-export const createForm = () => {
+export const makeFormProps = () => ({
+  // onSubmit is declared as a hack to be able to detect
+  // when the 'submit' listener is defined
+  onSubmit: Function as PropType<(event: Event) => void>,
+  hideErrors: {
+    type: Boolean,
+    default: () => false,
+  },
+});
+
+export const makeFormEmits = () => ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  [SUBMIT]: (event: Event) => true,
+});
+
+export const createForm = (props: FormProps) => {
   const items = shallowRef<Array<FormField>>([]);
 
   const publicValid = computed(() => {
@@ -45,6 +71,7 @@ export const createForm = () => {
     unregister: (id: IdType) => {
       items.value = items.value.filter((item) => item.id !== id);
     },
+    hideErrors: props.hideErrors,
     valid: publicValid,
   });
 

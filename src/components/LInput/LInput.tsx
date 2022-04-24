@@ -11,10 +11,6 @@ export const LInput = defineComponent({
   name: 'LInput',
   inheritAttrs: false,
   props: {
-    hideErrors: {
-      type: Boolean,
-      default: () => false,
-    },
     ...makeValidationProps<string>(),
   },
   emits: {
@@ -35,11 +31,7 @@ export const LInput = defineComponent({
           onBlur={validation.startValidating}
           { ...attrs }
         />
-        {
-          !props.hideErrors
-          && validation.error.value
-          && <p>{ validation.error.value }</p>
-        }
+        { validation.renderError.value && <p>{ validation.error.value }</p> }
       </>
     ));
 
