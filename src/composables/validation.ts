@@ -64,6 +64,8 @@ export const useValidation = <T>(props: ValidationProps<T>) => {
     }
   };
 
+  const renderError = computed(() => !hideErrors && error.value);
+
   const publicValid = computed(() => {
     if (!validating.value) {
       startValidating();
@@ -86,7 +88,7 @@ export const useValidation = <T>(props: ValidationProps<T>) => {
     startValidating,
     valid: publicValid,
     privateValid,
-    hideErrors,
+    renderError,
     error,
   };
 };
