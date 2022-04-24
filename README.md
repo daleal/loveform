@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/loveform" target="_blank">
-    <img src="https://img.shields.io/npm/v/loveform?label=version&logo=nodedotjs&logoColor=%23fff&color=fc0380" alt="NPM - Version">
+    <img src="https://img.shields.io/npm/v/loveform?label=version&logo=nodedotjs&logoColor=%23fff&color=f92e61" alt="NPM - Version">
   </a>
 
   <a href="https://github.com/daleal/loveform/actions?query=workflow%3Alinters" target="_blank">
