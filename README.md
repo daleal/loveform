@@ -2,7 +2,7 @@
 
 <p align="center">
   <em>
-    The form assembly tool that <strong>won't break your heart</strong> 💔.
+    The Vue form assembly tool that <strong>won't break your heart</strong> 💔.
   </em>
 </p>
 
