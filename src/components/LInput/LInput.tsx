@@ -9,6 +9,7 @@ import { useRender } from '@/utils/render';
 
 export const LInput = defineComponent({
   name: 'LInput',
+  inheritAttrs: false,
   props: {
     hideErrors: {
       type: Boolean,
@@ -32,9 +33,13 @@ export const LInput = defineComponent({
           value={props.modelValue}
           onInput={onInput}
           onBlur={validation.startValidating}
-          { ...{ attrs } }
+          { ...attrs }
         />
-        { !props.hideErrors && <p>{ validation.error.value }</p> }
+        {
+          !props.hideErrors
+          && validation.error.value
+          && <p>{ validation.error.value }</p>
+        }
       </>
     ));
 

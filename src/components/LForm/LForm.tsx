@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { useRender } from '@/utils/render';
 import { createForm } from '@/composables/form';
 
@@ -7,6 +7,7 @@ import type { PropType } from 'vue';
 
 export const LForm = defineComponent({
   name: 'LForm',
+  inheritAttrs: false,
   props: {
     // onSubmit is declared as a hack to be able to detect
     // when the 'submit' listener is defined
@@ -34,7 +35,7 @@ export const LForm = defineComponent({
     useRender(() => (
       <form
         onSubmit={onSubmit}
-        { ...{ attrs } }
+        { ...attrs }
       >
         { slots.default?.() }
       </form>
