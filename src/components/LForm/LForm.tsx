@@ -17,7 +17,7 @@ export const LForm = defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submit: (event: Event) => true,
   },
-  setup(props, { emit, slots }) {
+  setup(props, { attrs, emit, slots }) {
     const form = createForm();
 
     const onSubmit = (event: Event) => {
@@ -32,7 +32,10 @@ export const LForm = defineComponent({
     };
 
     useRender(() => (
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={onSubmit}
+        { ...{ attrs } }
+      >
         { slots.default?.() }
       </form>
     ));
