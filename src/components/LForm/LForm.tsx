@@ -18,7 +18,7 @@ export const LForm = defineComponent({
     ...makeFormEmits(),
   },
   setup(props, { attrs, emit, slots }) {
-    const form = createForm();
+    const form = createForm(props);
 
     const onSubmit = (event: Event) => {
       event.preventDefault();

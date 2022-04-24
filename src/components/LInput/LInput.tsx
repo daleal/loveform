@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import {
   useValidation,
   makeValidationEmits,
@@ -11,10 +11,6 @@ export const LInput = defineComponent({
   name: 'LInput',
   inheritAttrs: false,
   props: {
-    hideErrors: {
-      type: Boolean,
-      default: () => false,
-    },
     ...makeValidationProps<string>(),
   },
   emits: {
@@ -22,6 +18,8 @@ export const LInput = defineComponent({
   },
   setup(props, { attrs, emit }) {
     const validation = useValidation<string>(props);
+
+    const showErrors = computed(() => !validation.hideErrors && validation.error.value);
 
     const onInput = (event: Event) => {
       emit(UPDATE_MODEL_VALUE, (event.target as HTMLInputElement).value);
@@ -35,11 +33,7 @@ export const LInput = defineComponent({
           onBlur={validation.startValidating}
           { ...attrs }
         />
-        {
-          !props.hideErrors
-          && validation.error.value
-          && <p>{ validation.error.value }</p>
-        }
+        { showErrors.value && <p>{ validation.error.value }</p> }
       </>
     ));
 

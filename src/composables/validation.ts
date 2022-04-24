@@ -14,6 +14,7 @@ export type Validation<T> = (value: T) => true | string;
 export interface ValidationProps<T> {
   modelValue: T,
   validations: Array<Validation<T>>,
+  hideErrors: boolean,
 }
 
 export const makeValidationProps = <T>() => ({
@@ -24,6 +25,10 @@ export const makeValidationProps = <T>() => ({
   validations: {
     type: Array as PropType<Array<Validation<T>>>,
     default: () => ([]),
+  },
+  hideErrors: {
+    type: Boolean,
+    default: () => false,
   },
 });
 
@@ -39,6 +44,8 @@ export const useValidation = <T>(props: ValidationProps<T>) => {
   const validating = ref(false);
   const error = ref('');
   const privateValid = computed(() => !error.value.trim());
+
+  const hideErrors = form?.hideErrors || props.hideErrors;
 
   const startValidating = () => {
     validating.value = true;
@@ -79,6 +86,7 @@ export const useValidation = <T>(props: ValidationProps<T>) => {
     startValidating,
     valid: publicValid,
     privateValid,
+    hideErrors,
     error,
   };
 };
