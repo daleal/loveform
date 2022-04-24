@@ -3,7 +3,12 @@ import {
 } from 'vue';
 
 // Types
-import type { ComputedRef, InjectionKey, Ref } from 'vue';
+import type {
+  ComputedRef, InjectionKey, PropType, Ref,
+} from 'vue';
+
+export const SUBMIT = 'submit';
+export const SUBMIT_PROP = 'onSubmit';
 
 type IdType = number;
 
@@ -24,6 +29,17 @@ export interface FormProvide {
 }
 
 export const FormKey: InjectionKey<FormProvide> = Symbol.for('loveform:form');
+
+export const makeFormProps = () => ({
+  // onSubmit is declared as a hack to be able to detect
+  // when the 'submit' listener is defined
+  onSubmit: Function as PropType<(event: Event) => void>,
+});
+
+export const makeFormEmits = () => ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  [SUBMIT]: (event: Event) => true,
+});
 
 export const createForm = () => {
   const items = shallowRef<Array<FormField>>([]);

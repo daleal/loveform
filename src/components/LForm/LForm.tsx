@@ -1,22 +1,21 @@
 import { defineComponent } from 'vue';
 import { useRender } from '@/utils/render';
-import { createForm } from '@/composables/form';
-
-// Types
-import type { PropType } from 'vue';
+import {
+  createForm,
+  makeFormEmits,
+  makeFormProps,
+  SUBMIT,
+  SUBMIT_PROP,
+} from '@/composables/form';
 
 export const LForm = defineComponent({
   name: 'LForm',
   inheritAttrs: false,
   props: {
-    // onSubmit is declared as a hack to be able to detect
-    // when the 'submit' listener is defined
-    // eslint-disable-next-line vue/require-default-prop
-    onSubmit: Function as PropType<(event: Event) => void>,
+    ...makeFormProps(),
   },
   emits: {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    submit: (event: Event) => true,
+    ...makeFormEmits(),
   },
   setup(props, { attrs, emit, slots }) {
     const form = createForm();
@@ -24,8 +23,8 @@ export const LForm = defineComponent({
     const onSubmit = (event: Event) => {
       event.preventDefault();
       if (form.valid.value) {
-        if (props.onSubmit) {
-          emit('submit', event);
+        if (props[SUBMIT_PROP]) {
+          emit(SUBMIT, event);
         } else {
           ((event as SubmitEvent).target as HTMLFormElement).submit();
         }

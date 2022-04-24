@@ -1,5 +1,5 @@
 import {
-  computed, ComputedRef, onBeforeMount, onBeforeUnmount, ref, watch,
+  computed, onBeforeMount, onBeforeUnmount, ref, watch,
 } from 'vue';
 import { useForm } from '@/composables/form';
 import { getUniqueId } from '@/utils/uniqueId';
@@ -8,10 +8,6 @@ import { getUniqueId } from '@/utils/uniqueId';
 import type { PropType } from 'vue';
 
 export const UPDATE_MODEL_VALUE = 'update:modelValue';
-
-export interface FieldProvide {
-  valid: ComputedRef<boolean>,
-}
 
 export type Validation<T> = (value: T) => true | string;
 
