@@ -7,8 +7,8 @@ import {
 } from '@/composables/validation';
 import { useRender } from '@/utils/render';
 
-export const LInput = defineComponent({
-  name: 'LInput',
+export const LTextarea = defineComponent({
+  name: 'LTextarea',
   inheritAttrs: false,
   props: {
     ...makeValidationProps<string>(),
@@ -25,7 +25,7 @@ export const LInput = defineComponent({
 
     useRender(() => (
       <>
-        <input
+        <textarea
           value={props.modelValue}
           onInput={onInput}
           onBlur={validation.startValidating}
@@ -42,4 +42,4 @@ export const LInput = defineComponent({
   },
 });
 
-export type LInput = InstanceType<typeof LInput>
+export type LTextarea = InstanceType<typeof LTextarea>
