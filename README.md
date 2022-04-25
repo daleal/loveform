@@ -58,12 +58,12 @@ const email = ref('');
 const password = ref('');
 
 const emailValidations = [
-  (email: string) => !!email.trim() || 'The \'email\' field is required',
-  (email: string) => email.includes('@') || 'Invalid email',
+  (content: string) => !!content.trim() || 'The \'email\' field is required',
+  (content: string) => content.includes('@') || 'Invalid email',
 ];
 const passwordValidations = [
-  (password: string) => password.length >= 6 || 'The password needs at least 6 characters',
-  (password: string) => !password.includes('&') || 'The password can\'t include the \'&\' character',
+  (content: string) => content.length >= 6 || 'The password needs at least 6 characters',
+  (content: string) => !content.includes('&') || 'The password can\'t include the \'&\' character',
 ];
 
 const submit = async () => {
