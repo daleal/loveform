@@ -19,6 +19,7 @@
   },
   "sideEffects": false,
   "scripts": {
+    "bump!": "sh scripts/bump.sh",
     "build": "run-p build:*",
     "build:scripts": "vite build",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
