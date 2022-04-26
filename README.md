@@ -8,7 +8,7 @@
 
 <p align="center">
   <em>
-    The Vue form assembly tool that <strong>won't break your heart</strong> 💔.
+    The Vue form assembly tool that <strong>won't break your heart</strong> 💔
   </em>
 </p>
 
