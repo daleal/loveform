@@ -1,8 +1,14 @@
+<p align="center">
+  <a href="https://github.com/daleal/loveform">
+    <img src="https://loveform.daleal.dev/assets/images/loveform-300x300.png">
+  </a>
+</p>
+
 <h1 align="center">Loveform</h1>
 
 <p align="center">
   <em>
-    The Vue form assembly tool that <strong>won't break your heart</strong> 💔.
+    The Vue form assembly tool that <strong>won't break your heart</strong> 💔
   </em>
 </p>
 
