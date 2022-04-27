@@ -5,23 +5,16 @@ import { useForm } from '@/composables/form';
 import { getUniqueId } from '@/utils/uniqueId';
 
 // Types
-import type { PropType } from 'vue';
-
-export const UPDATE_MODEL_VALUE = 'update:modelValue';
+import type { PropType, Ref } from 'vue';
 
 export type Validation<T> = (value: T) => true | string;
 
 export interface ValidationProps<T> {
-  modelValue: T,
   validations: Array<Validation<T>>,
   hideErrors: boolean,
 }
 
 export const makeValidationProps = <T>() => ({
-  modelValue: {
-    type: null as unknown as PropType<T>,
-    required: true as const,
-  },
   validations: {
     type: Array as PropType<Array<Validation<T>>>,
     default: () => ([]),
@@ -32,12 +25,7 @@ export const makeValidationProps = <T>() => ({
   },
 });
 
-export const makeValidationEmits = <T>() => ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  [UPDATE_MODEL_VALUE]: (value: T) => true,
-});
-
-export const useValidation = <T>(props: ValidationProps<T>) => {
+export const useValidation = <T>(props: ValidationProps<T>, content: Ref<T>) => {
   const form = useForm();
   const uid = getUniqueId();
 
@@ -55,7 +43,7 @@ export const useValidation = <T>(props: ValidationProps<T>) => {
     if (!validating.value) {
       return;
     }
-    const validated = props.validations.map((validation) => validation(props.modelValue));
+    const validated = props.validations.map((validation) => validation(content.value));
     const errors = validated.filter((possible) => possible !== true) as Array<string>;
     if (!errors.length) {
       error.value = '';
@@ -82,7 +70,7 @@ export const useValidation = <T>(props: ValidationProps<T>) => {
     form?.unregister(uid);
   });
 
-  watch([() => props.modelValue, () => props.validations, validating], validate);
+  watch([() => content.value, () => props.validations, validating], validate);
 
   return {
     startValidating,

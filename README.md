@@ -1,8 +1,14 @@
+<p align="center">
+  <a href="https://github.com/daleal/loveform">
+    <img src="https://loveform.daleal.dev/assets/images/loveform-300x300.png">
+  </a>
+</p>
+
 <h1 align="center">Loveform</h1>
 
 <p align="center">
   <em>
-    The Vue form assembly tool that <strong>won't break your heart</strong> 💔.
+    The Vue form assembly tool that <strong>won't break your heart</strong> 💔
   </em>
 </p>
 
@@ -91,6 +97,16 @@ const submit = async () => {
 ```
 
 Each validation corresponds to a function that receives the value in the input and returns `true` (if the value of the input is correct) or an error string. Each validation will be run _sequentially_ from the first validation of the array to the last one, and the first validation to fail will be displayed as the error.
+
+## Available Components
+
+The available components are listed below:
+
+- `LForm`: The form wrapper that validates inputs when trying to submit.
+- `LInput`: A validatable `input` component.
+- `LTextarea`: A validatable `textarea` component.
+- `LCheckbox`: A `checkbox` type `input` component that plays nicely with the `LCheckboxGroup` component.
+- `LCheckboxGroup`: A validatable group of `LCheckbox` components.
 
 ## Development
 

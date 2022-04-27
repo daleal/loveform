@@ -1,34 +1,38 @@
-import { defineComponent } from 'vue';
-import {
-  useValidation,
-  makeValidationEmits,
-  makeValidationProps,
-  UPDATE_MODEL_VALUE,
-} from '@/composables/validation';
+import { defineComponent, ref } from 'vue';
+import { useValidation, makeValidationProps } from '@/composables/validation';
 import { useRender } from '@/utils/render';
 
 export const LInput = defineComponent({
   name: 'LInput',
   inheritAttrs: false,
   props: {
+    modelValue: {
+      type: String,
+      default: () => '',
+    },
     ...makeValidationProps<string>(),
   },
   emits: {
-    ...makeValidationEmits<string>(),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    'update:modelValue': (value: string) => true,
   },
   setup(props, { attrs, emit }) {
-    const validation = useValidation<string>(props);
+    const content = ref(props.modelValue);
+
+    const validation = useValidation<string>(props, content);
 
     const onInput = (event: Event) => {
-      emit(UPDATE_MODEL_VALUE, (event.target as HTMLInputElement).value);
+      content.value = (event.target as HTMLInputElement).value;
+      emit('update:modelValue', (event.target as HTMLInputElement).value);
     };
 
     useRender(() => (
       <>
         <input
-          value={props.modelValue}
+          value={content.value}
           onInput={onInput}
           onBlur={validation.startValidating}
+          type="text"
           { ...attrs }
         />
         { validation.renderError.value && <p>{ validation.error.value }</p> }
