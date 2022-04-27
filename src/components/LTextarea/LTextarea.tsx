@@ -8,7 +8,7 @@ export const LTextarea = defineComponent({
   props: {
     modelValue: {
       type: String,
-      default: '',
+      default: () => '',
     },
     ...makeValidationProps<string>(),
   },

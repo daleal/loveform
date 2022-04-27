@@ -8,7 +8,7 @@ export const LInput = defineComponent({
   props: {
     modelValue: {
       type: String,
-      default: '',
+      default: () => '',
     },
     ...makeValidationProps<string>(),
   },
@@ -32,6 +32,7 @@ export const LInput = defineComponent({
           value={content.value}
           onInput={onInput}
           onBlur={validation.startValidating}
+          type="text"
           { ...attrs }
         />
         { validation.renderError.value && <p>{ validation.error.value }</p> }
