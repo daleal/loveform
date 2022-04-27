@@ -1,4 +1,5 @@
 import { defineComponent, ref } from 'vue';
+import { useCheckbox } from '@/composables/checkbox';
 import { useRender } from '@/utils/render';
 
 export const LCheckbox = defineComponent({
@@ -7,7 +8,7 @@ export const LCheckbox = defineComponent({
   props: {
     modelValue: {
       type: Boolean,
-      default: false,
+      default: () => false,
     },
   },
   emits: {
@@ -16,6 +17,8 @@ export const LCheckbox = defineComponent({
   },
   setup(props, { attrs, emit }) {
     const content = ref(props.modelValue);
+
+    useCheckbox(content);
 
     const onInput = (event: Event) => {
       content.value = (event.target as HTMLInputElement).checked;

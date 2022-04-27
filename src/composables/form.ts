@@ -3,9 +3,7 @@ import {
 } from 'vue';
 
 // Types
-import type {
-  ComputedRef, InjectionKey, PropType, Ref,
-} from 'vue';
+import type { InjectionKey, PropType, Ref } from 'vue';
 
 export const SUBMIT = 'submit';
 export const SUBMIT_PROP = 'onSubmit';
@@ -25,13 +23,13 @@ export interface FormProps {
 export interface FormProvide {
   register: (
     id: IdType,
-    valid: ComputedRef<boolean>,
+    valid: Ref<boolean>,
   ) => void,
   unregister: (
     id: IdType,
   ) => void,
   hideErrors: boolean,
-  valid: ComputedRef<boolean>,
+  valid: Ref<boolean>,
 }
 
 export const FormKey: InjectionKey<FormProvide> = Symbol.for('loveform:form');
@@ -62,11 +60,8 @@ export const createForm = (props: FormProps) => {
   });
 
   provide(FormKey, {
-    register: (id: IdType, valid: ComputedRef) => {
-      items.value.push({
-        id,
-        valid,
-      });
+    register: (id: IdType, valid: Ref<boolean>) => {
+      items.value = [...items.value, { id, valid }];
     },
     unregister: (id: IdType) => {
       items.value = items.value.filter((item) => item.id !== id);
