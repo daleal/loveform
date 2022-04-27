@@ -2,7 +2,9 @@
   "name": "loveform",
   "version": "0.2.0",
   "description": "The Vue form assembly tool that won't break your heart 💔",
+  "homepage": "https://loveform.daleal.dev",
   "repository": "https://github.com/daleal/loveform",
+  "bugs": "https://github.com/daleal/loveform/issues",
   "license": "MIT",
   "author": {
     "name": "Daniel Leal",
