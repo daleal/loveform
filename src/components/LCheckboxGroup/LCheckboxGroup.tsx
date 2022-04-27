@@ -18,9 +18,9 @@ export const LCheckboxGroup = defineComponent({
 
     useRender(() => (
       <>
-        <div>
+        <>
           { slots.default?.() }
-        </div>
+        </>
         { validation.renderError.value && <p>{ validation.error.value }</p> }
       </>
     ));
