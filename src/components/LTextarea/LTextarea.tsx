@@ -30,11 +30,15 @@ export const LTextarea = defineComponent({
       <>
         <textarea
           value={content.value}
+          class="l-textarea"
           onInput={onInput}
           onBlur={validation.startValidating}
           { ...attrs }
         />
-        { validation.renderError.value && <p>{ validation.error.value }</p> }
+        {
+          validation.renderError.value
+          && <p class="l-textarea__error">{ validation.error.value }</p>
+        }
       </>
     ));
 
