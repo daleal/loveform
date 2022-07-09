@@ -30,12 +30,16 @@ export const LInput = defineComponent({
       <>
         <input
           value={content.value}
+          class="l-input"
+          type="text"
           onInput={onInput}
           onBlur={validation.startValidating}
-          type="text"
           { ...attrs }
         />
-        { validation.renderError.value && <p>{ validation.error.value }</p> }
+        {
+          validation.renderError.value
+          && <p class="l-input__error">{ validation.error.value }</p>
+        }
       </>
     ));
 

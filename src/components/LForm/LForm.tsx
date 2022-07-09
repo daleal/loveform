@@ -33,6 +33,7 @@ export const LForm = defineComponent({
 
     useRender(() => (
       <form
+        class="l-form"
         onSubmit={onSubmit}
         { ...attrs }
       >
