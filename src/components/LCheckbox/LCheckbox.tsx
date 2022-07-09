@@ -29,8 +29,9 @@ export const LCheckbox = defineComponent({
       <>
         <input
           value={content.value}
-          onInput={onInput}
+          class="l-checkbox"
           type="checkbox"
+          onInput={onInput}
           { ...attrs }
         />
       </>

@@ -18,10 +18,11 @@ export const LCheckboxGroup = defineComponent({
 
     useRender(() => (
       <>
-        <>
-          { slots.default?.() }
-        </>
-        { validation.renderError.value && <p>{ validation.error.value }</p> }
+        { slots.default?.() }
+        {
+          validation.renderError.value
+          && <p class="l-checkbox-group__error">{ validation.error.value }</p>
+        }
       </>
     ));
 
